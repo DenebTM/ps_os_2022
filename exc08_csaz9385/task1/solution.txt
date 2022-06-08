@@ -1,0 +1,6 @@
+A thread pool offers a pool of consumer threads - they "consume" jobs that you
+give them. The producer in this case is any other thread giving out those jobs.
+
+Using a pool is much faster, but I'm also only creating 128 threads for my 
+pool - which is a less ridiculous number than 50,000 (or 30,000 in my case, as
+the limit on Linux 5.16.16-arch1-1 appears to be somewhere around 32,700).

@@ -1,0 +1,4 @@
+The variant with my mutex implementation does almost no voluntariy context
+switches, and generally runs into fewer page faults. However, execution time is
+not that different between the two, and more consistent with for the variant
+relying on the pthread mutex implementation.

@@ -1,0 +1,18 @@
+Set environment variable for the shell:
+    MY_ENV_VAR=[value]
+Make environment variable available to child processes (e.g. our program):
+    export MY_ENV_VAR
+    May also be combined with setting a variable:
+      export MY_ENV_VAR=[value]
+Delete environment variable:
+    unset MY_ENV_VAR
+Set variable only for a specific command:
+    MY_ENV_VAR=[value] [command]
+
+The PATH environment variable contains a :-separated list of all locations on
+the system (subfolders not included) where the shell will look for executable
+files. Executables placed in locations listed in PATH can be run simply by
+typing their name instead of their full or relative path, providing easy access
+to them.
+PATH locations are searched starting from the beginning - this can be used to
+"override" executables by placing them in a directory that is searched earlier.

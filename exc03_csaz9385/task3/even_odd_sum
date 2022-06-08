@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+for n in "$@"; do
+    ./even "$n"
+    res=$?
+
+    if [[ "$res" == "0" ]]; then
+        evensum=$(( $evensum + $n ))
+    elif [[ "$res" == "1" ]]; then
+        oddsum=$(( $oddsum + $n ))
+    elif [[ "$res" == "3" ]]; then
+        echo "Error: '$n' is not a number" 1>&2
+        exit 3
+    fi
+done
+
+printf "Sum of even numbers: %3d\n" $evensum
+printf "Sum of odd numbers:  %3d\n" $oddsum

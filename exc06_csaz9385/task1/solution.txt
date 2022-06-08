@@ -1,0 +1,5 @@
+Incrementing the global variable in the child process does not affect the same
+variable in its parent process. Doing the same within a pthread does. This is
+because pthreads aren't full processes and are required by the POSIX standard
+to share many things with their creator including global variables, while child
+processes receive a copy of their parent's memory segment at creation.

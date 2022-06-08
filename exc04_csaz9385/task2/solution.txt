@@ -1,0 +1,6 @@
+[command] <  [filename] - pipe the contents of a file into stdin of the command
+[command] >  [filename] - pipe stdout of the command into a file
+[command] 2> [filename] - pipe stderr of the command into a file
+                          can be combined with > ([command] > file1 2> file2)
+[command] 2>&1          - pipe stderr of the command into stdout (combine them)
+                          works the other way around as well ([command] 1>&2)

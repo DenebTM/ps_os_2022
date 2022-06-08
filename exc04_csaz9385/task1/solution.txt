@@ -1,0 +1,99 @@
+a) Permissions:
+    Files:
+        read    - allows reading the file
+        write   - allows writing and appending to the file
+        execute - allows running the file as a program (./filename)
+
+    Directories:
+        read    - allows listing directory contents (only name and type)
+        write   - allows creating new files inside the directory
+        execute - allows entering the directory and listing files inside of it
+
+b) Owner:
+    User  - exactly one user owns the file, and their permissions can be
+            adjusted specifically
+    
+    Group - alongside the primary owner, a group of users may also be given
+            specific permissions on a file or directory
+    
+    The owning user could, for instance, be a project leader who gets r/w
+    access to the project files, while their coworkers are part of a group that
+    may read the files but not write to them.
+
+c) The permission string can be broken up as follows:
+    d/rwx/rwx/rwx
+    │  │   │   └─── read/write/execute permissions of other users
+    │  │   └─────── read/write/execute permissions of the owning group
+    │  └─────────── read/write/execute permissions of the owning user
+    └────────────── 'd' denotes a directory, '-' denotes a file
+
+d) Octal permissions:
+    There are three fundamental types of permissions, each either on or off.
+    These can be represented by an octal number consisting of three bits:
+
+         ┌───── read
+         │ ┌─── write
+         │ │ ┌─ execute
+    Bits 2 1 0
+         │ │ └─ decimal 1
+         │ └─── decimal 2
+         └───── decimal 4
+
+    The standard four-digit octal "mode" consists of three of these groups for
+    user, group and other permissions, as well as an additional group in front
+    representing the sticky bits:
+
+    0754
+    │││└─ others may only read the file
+    ││└── the group may read the file and execute it, but not write to it
+    │└─── the owner gets full read/write/execute permissions
+    └──── no sticky bits are set
+
+e) Changing permissions:
+    Permissions may be changed with the 'chmod' (change mode) command.
+    chmod accepts both octal permission modes and the following, more
+    readable format:
+
+    [ugo][+/-][rwx]
+      │    │    └─── permission to update, multiple may be specified
+      │    └──────── give (+) or revoke (-) the permission
+      └───────────── update user, group or other permissions, may be 
+                     left empty to change all of them at once
+
+    Examples: chmod +x will give execute permission to all
+                (e.g. mode 0644 -> 0755)
+              chmod ug+w will give write permission to owning user and group
+                (e.g. mode 0000 -> 0660)
+
+    Additionally, 'chown user:group' (change owner) will do just that - change
+    the owning user and group of a file or directory. The group may be omitted,
+    however the user may not.
+
+f) Changing permissions of all files within a directory:
+    There are two ways to achieve this:
+    1. chmod [mode] /path/to/directory/*
+        relies on the shell substituting * for all files in the directory,
+        will not affect permissions of the directory itself, nor any
+        subdirectories
+    2. chmod -R [mode] /path/to/directory/
+        will recursively change permissions on the directory, its contents,
+        as well as all of its subdirectories
+
+g) umask:
+    'umask' will change the default permissions with which new files and
+    directories are created for the current session.
+    It is specified in reverse order - read: the permissions that will be
+    masked, rather than those that will be given - e.g. 'umask 0077' will
+    change the default permission mode to 0700.
+
+h) Permissions for named pipes:
+    If no interference at all from other users is desired, the permission
+    mode for a named pipe should be set to 0600. Setting the execute
+    bit on a named pipe is not possible, and you cannot prevent yourself from
+    accessing the pipe (from another shell, for instance), however.
+
+    Additionally, the pipe should be created somewhere where other users are
+    not likely to see it - e.g. in /tmp - if possible. The name should also be
+    chosen in such a way that it is both clear what it is used for, and not
+    easy to use by accident. Additionally, it should not be created inside a
+    directory that has the user or group sticky bits set.

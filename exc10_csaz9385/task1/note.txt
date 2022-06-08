@@ -1,0 +1,4 @@
+simple pointer swap -> constant-time allocation and freeing of blocks
+
+faster than the system allocator in all cases when running on a single core
+mutex contention slows things down a little when running on multiple cores

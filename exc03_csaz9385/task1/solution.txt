@@ -1,0 +1,11 @@
+With a small number of samples (around 1000) and children (3), the output is
+generally consistent, and in order of creation (child 0, 1, 2). With increasing
+sample sizes and number of children, the correleation between the time a child
+is created and the time it finishes becomes weaker.
+
+The order of execution cannot be reliably predicted, as it is up to the
+operating system to schedule allotment of CPU time.
+
+Yes, the random number generator must be seeded after child creation in order
+for their values to differ. Otherwise each child "inherits" it from the parent
+and each call to rand() will return the same value in every process.

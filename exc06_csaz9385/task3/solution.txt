@@ -1,0 +1,6 @@
+In our consumer threads, we have to check that the queue isn't empty before
+attempting to pop from it. Using pthread_cond_wait, we can wait until the queue
+is no longer empty (that is our condition), rather than giving up and returning
+the mutex without doing any work. This avoids a lot of unnecessary mutex
+operations, reducing the number of context switches by an order of magnitude and
+speeding up computation immensely - 0.5 seconds down from 10, in my case.

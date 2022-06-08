@@ -1,0 +1,39 @@
+1) A call to fork() creates a new process with a full copy of the current one's
+   memory. The two processes will initially be in sync, but any writes in one
+   will not carry over to the other. Shared memory is one possible solution to
+   this, since as the name suggests, it will be shared between both processes.
+
+2) A race condition in software is a situation in which the outcome of a
+   process is dependent on the timing of certain events, in a way not intended
+   by, and usually not fully under the control of the programmer.
+
+3) Race conditions most often occur in parallelized systems, i.e. when one or
+   multiple software or hardware components of the system can act on memory
+   independently of each other.
+
+4) No, but there is usually a high chance that it will be.
+
+5) The only way to find out if race conditions exist is through thorough
+   analysis, and 100 runs is too small a sample size to truly determine that a
+   piece of software is free of them - perhaps the 101st run would be the first
+   to deliver an incorrect result.
+
+6) Synchronization is the act of making sure that two or more processes are in
+   a consistent state. It is essential in resolving race conditions.
+
+7) In a producer-consumer pattern, there is usually a circular buffer that both
+   the producer and consumer processes have access to. It is easy to anticipate
+   which part of that buffer each process will write to or read from next, so
+   semaphores allow for keeping track of how much space there is left for the
+   producer to provide additional data, and how much data there is left for the
+   consumer to work on. That way, both processes will work at the speed of the
+   slower one.
+
+8) Anonymous semaphores - when synchronization is needed between related
+    processes (parent/child) or threads, and a shared memory object is already
+    present.
+   Named semaphores - in situations where independent processes need to be
+    synchronized with each other, or shared memory is not otherwise used.
+
+9) Yes, albeit in a more convoluted manner - e.g. by using sem_getvalue to
+   ensure that a certain threshold is never exceeded.

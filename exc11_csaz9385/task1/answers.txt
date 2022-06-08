@@ -1,0 +1,33 @@
+1) some_program also links with the following, built-in shared libraries:
+    ld-linux.so     - the dynamic linker, responsible itself for loading other
+                      shared libraries
+    libc.so         - the C standard library
+    linux-vdso.so   - a collection of often-used system calls, packed into a
+                      shared library to improve performance
+
+2) my_program is about 848k in size on my system, while some_program takes up
+   only around 17k. This difference is explained by the fact that my_program is
+   statically linked, hence it contains a copy of the C standard library, while
+   some_program does not.
+
+2) Dynamic linking loads symbols used by an executable at runtime, while static
+   linking copies them into the executable itself.
+
+3) Dynamic linking keeps executables small and allows updating parts of the
+   software without replacing the entire executable.
+   It makes sense to use when size matters, when a library's API isn't expected
+   to change between versions, when you want to automatically reap the benefits
+   of future security or performance improvements by the library's maintainer,
+   or for large projects where modularization of code allows for quicker,
+   smaller, incremental updates.
+
+4) Static linking allows for more portable executables that work anywhere
+   (within kernel and operating system limits), without having to worry about
+   e.g. older versions of the standard library with missing features.
+
+5) Position-independent code is code that does not need to be loaded to a
+   specific memory address in order to run. It is especially useful for shared
+   libraries, as those may not have a fixed location in virtual address space.
+
+6) LD_LIBRARY_PATH is used to specify additional directories for the dynamic
+   linker (ld-linux.so) to look for shared libraries in.

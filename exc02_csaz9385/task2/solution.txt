@@ -1,0 +1,8 @@
+SIGTERM politely asks the process to exit - this signal can be caught; allows
+  for controlled clean-up tasks such as closing any open files.
+SIGKILL shoots the process point blank - this signal cannot be caught, and
+  the process WILL exit then and there. Useful for when a program has frozen.
+These can be invoked by kill [pid] and kill -9 [pid], respectively.
+
+Ctrl+C sends SIGINT to a terminal process. This signal is often used to
+  terminate a running script or cancel an action.

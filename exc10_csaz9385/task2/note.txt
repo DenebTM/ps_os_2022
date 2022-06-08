@@ -1,0 +1,4 @@
+the list needs to be kept in order now to allow for quick merging of adjacent
+blocks -> slower than the system allocator in almost all cases
+
+additionally, lots of mutex contention and slowdown when using multiple cores

@@ -1,0 +1,78 @@
+ssh [user@]server
+    Starts a (s)ecure (sh)ell session with a remote server.
+    This is in essence a terminal running on it, with most of the same capabilities.
+
+sftp [user@]server
+    Starts a file transfer session with a remote server via SSH, much like FTP.
+    This can be used to easily copy files to and from zid-gpl.
+
+exit
+    Exits from any local or remote terminal session.
+
+pwd
+    Returns the (p)resent (w)orking (d)irectory, i.e. where on the file system we currently are.
+
+ls [path]
+    Lists the file or directory in the specified path, or . if none specified.
+    May be used with -l, -a, -h or other parameters to display more detailed information.
+    Important to note: . and .. always exist, pointing to the current and parent directory, respectively.
+
+cd [path]
+    (C)hanges the working (d)irectory to an absolute or relative path specified.
+    Stays in . if none specified.
+
+touch path
+    Creates an empty file in the specified location, or updates its modification time if it already exists.
+    Can also be used to arbitrarily change creation or modification times.
+
+mkdir [path/]dirname
+    (M)a(k)es a new (dir)ectory in the specified location if it does not exist.
+
+cp path1 path2
+    (C)o(p)ies a file or directory located at path1 to path2.
+    If path2 is a directory, the file at path1 will be copied into it.
+    Will not copy directory contents unless -r or -R is specified.
+
+mv path1 path2
+    (M)o(v)es a file or directory located at path1 to path2.
+
+rm path
+    (R)e(m)oves a file located at the given path.
+    Will not remove directories unless -r is specified.
+
+rmdir path
+    (R)e(m)oves a non-empty directory located at the given path.
+
+man
+    A (man)ual built into Linux and other Unix/Unix-like operating systems.
+    
+    == Summary of some pages, I guess? ==
+    intro
+        Explains the basics of working with a Linux terminal shell.
+
+    man-pages
+        Explains the structure conventions used by man pages.
+        Man pages are divided into several different sections, e.g.:
+            1 for interactive user commands
+            2 and 3 for library calls that may be used by programmers
+            5 for file formats
+
+        These sections may be specified between man and the page name,
+        useful if a piece of software offers documentation in multiple sections.
+
+        E.g. "man printf" will show documentation for the user-facing "printf" command
+        that may be typed into the shell, while "man 3 printf" will show documentation
+        for the printf() function provided by the C standard library.
+
+    file-hierarchy
+        Explains the general structure of the Linux file system.
+
+apropos
+    Performs a search through the manpage catalog.
+
+info
+    An alternative to "traditional" manpage documentation, supports basic hyperlinking among other things.
+    May or may not contain more/better information for a given piece of software.
+
+help
+    Quick reference for the shell's built-in keywords, e.g. cd.

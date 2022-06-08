@@ -1,0 +1,9 @@
+Most shells store the last exit code in $? - e.g. "echo $?" will display it.
+
+;, && and || in the shell work similar to how they do in C.
+  - ;  simply executes one command after another
+  - && executes the second command only if the first one returned 0 (success)
+  - || executes the second command only if the first did not return 0 (failure)
+
+The "true"/"false" executables can be run either by typing their full path
+  (found by "which"), or by "env [name of executable]".
