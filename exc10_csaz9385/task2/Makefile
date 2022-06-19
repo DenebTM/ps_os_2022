@@ -1,1 +1,1 @@
-../task1/Makefile
+/home/deneb/Nextcloud/Documents/Uni/ss22/os/ps_os_2022/exc10_csaz9385/task1/Makefile
